@@ -59,16 +59,12 @@ def adicionar_cliente():
     
     if "nome" not in dados or "cpf" not in dados or "status" not in dados:
         return jsonify({'Mensagem': 'Campo nome, CPF e status são obrigatórios'}), 400
-    
-    if len("cpf") > 11:
-        return jsonify({'Mensagem': 'Erro. o CPF não possui menos de 11 caracteres '}), 400
-
 
     status = dados['status'].lower()
 
     if status not in ["ativo", "bloqueado"]:
         return jsonify({'Mensagem': 'Status inválido. Use ativo ou bloqueado.'}), 400
-    
+
     
     # Gerenciamento do contador de ID
     contador_ref = db.collection('controle_id').document('contador')
