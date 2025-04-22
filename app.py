@@ -116,9 +116,10 @@ def excluir_cliente(id):
         doc_ref.delete()  
         return jsonify({'mensagem': 'Cliente excluído com sucesso!'}), 200  
 
-@app.route('/clientes/verificar', methods=['GET'])
+@app.route('/clientes/verificar', methods=['POST'])
 def verificar_cliente():
-    cpf = request.args.get('cpf')
+    dados = request.json
+    cpf = dados.get('cpf')
 
     if not cpf:
         return jsonify({'mensagem': 'CPF não informado'}), 400
@@ -132,7 +133,6 @@ def verificar_cliente():
     for doc in documentos:
         cliente = doc.to_dict()
         return jsonify({'status': cliente.get('status')}), 200
-
     
 @app.route('/clientes/<id>/status', methods=['PATCH'])
 def atualizar_status(id):
