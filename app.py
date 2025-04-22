@@ -116,7 +116,7 @@ def excluir_cliente(id):
         doc_ref.delete()  
         return jsonify({'mensagem': 'Cliente excluído com sucesso!'}), 200  
 
-@app.route('/clientes/verificar', methods=['POST'])
+@app.route('/clientes/verificar', methods=['GET'])
 def verificar_cliente():
     dados = request.json
     cpf = dados.get('cpf')
