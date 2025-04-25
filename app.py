@@ -116,7 +116,7 @@ def excluir_cliente(id):
         doc_ref.delete()  
         return jsonify({'mensagem': 'Cliente excluído com sucesso!'}), 200  
 
-@app.route('/clientes/verificar', methods=['POST'])
+@app.route('/clientes/verificar', methods=['POST']) # o post é usado aqui pois a requisicao fica mais segura, se fosse usado get o cpf iria aparecer na url. o cpf vai ficar salvo no corpo da requisicao
 def verificar_cliente():
     dados = request.json
     cpf = dados.get('cpf')
